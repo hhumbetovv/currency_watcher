@@ -1,4 +1,4 @@
-# Easy Exchange
+# Currency Watch
 
 
 
