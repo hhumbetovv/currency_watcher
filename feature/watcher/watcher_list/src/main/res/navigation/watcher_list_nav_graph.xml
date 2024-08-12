@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/watcher_list_nav_graph"
+    app:startDestination="@id/watcherListFragment">
+
+    <fragment
+        android:id="@+id/watcherListFragment"
+        android:name="com.theternal.watcher_list.WatcherListFragment"
+        android:label="WatcherListFragment" >
+        <action
+            android:id="@+id/to_watcherDetails"
+            app:destination="@id/watcherDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/watcherDetailsFragment"
+        android:name="com.theternal.watcher_details.WatcherDetailsFragment"
+        android:label="WatcherDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+</navigation>

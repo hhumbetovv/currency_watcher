@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/exchange_nav_graph"
+        android:icon="@drawable/ic_exchange"
+        android:title="@string/exchange"/>
+
+    <item android:enabled="false" android:title=""/>
+
+    <item android:id="@+id/watcher_list_nav_graph"
+        android:icon="@drawable/ic_eye"
+        android:title="@string/watchers"/>
+
+
+</menu>

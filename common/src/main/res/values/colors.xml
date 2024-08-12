@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="primary">#3D52DB</color>
+    <color name="danger">#DB3D3D</color>
+    <color name="bg">#252525</color>
+    <color name="container">#333333</color>
+    <color name="white">#FFFFFF</color>
+</resources>

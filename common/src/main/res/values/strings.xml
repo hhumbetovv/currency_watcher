@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Currency Watcher</string>
+    <string name="exchange">Exchange</string>
+    <string name="watchers">Watchers</string>
+    <string name="addWatcher">Add Watcher</string>
+    <string name="removeWatcher">Remove\nWatcher</string>
+    <string name="swap">Swap</string>
+    <string name="save">Save</string>
+    <string name="emptyWatcherList">there are no watchers registered yet</string>
+    <string name="emptyRecordList">no changes have been recorded yet</string>
+    <string name="currentAmount">Current Amount</string>
+    <string name="amount">Amount</string>
+    <string name="hintPrimaryAmount">Enter Primary Amount</string>
+    <string name="threshold">Threshold</string>
+    <string name="hintSecondaryAmount">Enter Secondary Amount</string>
+    <string name="watcherCreated">Watcher successfully created</string>
+</resources>

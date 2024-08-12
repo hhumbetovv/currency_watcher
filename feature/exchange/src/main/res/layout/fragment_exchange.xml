@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:background="@color/bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="24dp">
+
+        <EditText
+            android:id="@+id/primaryField"
+            style="@style/editText"
+            android:layout_marginRight="16dp"
+            android:hint="@string/hintPrimaryAmount"
+            app:layout_constraintBottom_toTopOf="@+id/secondaryField"
+            app:layout_constraintEnd_toStartOf="@+id/primaryCurrency"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <TextView
+            android:id="@+id/primarySubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/primaryField"
+            tools:text="1 USD = 1 USD" />
+
+        <Spinner
+            android:id="@+id/primaryCurrency"
+            style="@style/spinner"
+            app:layout_constraintBottom_toBottomOf="@+id/primaryField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/primaryField" />
+
+        <EditText
+            android:id="@+id/secondaryField"
+            style="@style/editText"
+            android:layout_marginRight="16dp"
+            android:hint="@string/hintSecondaryAmount"
+            app:layout_constraintBottom_toTopOf="@+id/addWatcherBtn"
+            app:layout_constraintEnd_toStartOf="@+id/secondaryCurrency"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/primaryField" />
+
+        <TextView
+            android:id="@+id/secondarySubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondaryField"
+            tools:text="1 USD = 1 USD" />
+
+        <Spinner
+            android:id="@+id/secondaryCurrency"
+            style="@style/spinner"
+            app:layout_constraintBottom_toBottomOf="@+id/secondaryField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/secondaryField" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addWatcherBtn"
+            style="@style/button"
+            android:text="@string/addWatcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/loader"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-6dp"
+        android:layout_marginTop="-4dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</LinearLayout>
