@@ -38,23 +38,21 @@ class CheckWatchersUseCase @Inject constructor(
 
                 if(maxExceeded || minExceeded) {
                     recordCount++
-                    withContext(Dispatchers.IO) {
-                        recordRepository.createRecord(
-                            RecordEntity(
-                                date = System.currentTimeMillis(),
-                                maxExceeded = maxExceeded,
-                                value = currentValue,
-                                watcherId = watcher.id,
-                                currency = watcher.thresholdCurrency
-                            )
+                    recordRepository.createRecord(
+                        RecordEntity(
+                            date = System.currentTimeMillis(),
+                            maxExceeded = maxExceeded,
+                            value = currentValue,
+                            watcherId = watcher.id,
+                            currency = watcher.thresholdCurrency
                         )
-                        watcherRepository.updateWatcher(
-                            watcher.copy(
-                                previousValue = currentValue,
-                                recordCount = watcher.recordCount + 1
-                            )
+                    )
+                    watcherRepository.updateWatcher(
+                        watcher.copy(
+                            previousValue = currentValue,
+                            recordCount = watcher.recordCount + 1
                         )
-                    }
+                    )
                 }
             }
         }

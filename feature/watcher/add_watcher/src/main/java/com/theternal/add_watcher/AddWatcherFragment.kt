@@ -88,8 +88,6 @@ class AddWatcherFragment() : BaseFragment<FragmentAddWatcherBinding, AddWatcherV
                 ).show()
 
                 (parentFragment as? BottomSheetFragment)?.dismiss()
-
-                (requireActivity() as WorkerManager).startWatcherWorker()
             }
         }
     }
