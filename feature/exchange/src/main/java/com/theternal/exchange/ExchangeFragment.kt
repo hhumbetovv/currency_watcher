@@ -38,6 +38,10 @@ class ExchangeFragment : BaseFragment<FragmentExchangeBinding, ExchangeViewModel
 
     override val initViews: Initializer<FragmentExchangeBinding> = {
 
+        /**
+         * Observing navigation state to get result and update currency
+         * @see CurrencyResult
+         * */
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<CurrencyResult>(
             SelectCurrencyFragment.CURRENCY_KEY
         )?.observe(viewLifecycleOwner) { result ->
@@ -63,6 +67,9 @@ class ExchangeFragment : BaseFragment<FragmentExchangeBinding, ExchangeViewModel
             postEvent(Event.SetSecondaryAmount(value.toBigDecimalOrZero()))
         }
 
+        /**
+         * Navigates to the new screen for primary currency selection
+         * */
         primaryCurrency.setOnClickListener {
             val action = ExchangeFragmentDirections.toSelectCurrencyFragment(
                 currencyList = state?.currencyList?.toTypedArray() ?: emptyArray(),
@@ -71,6 +78,9 @@ class ExchangeFragment : BaseFragment<FragmentExchangeBinding, ExchangeViewModel
             navController.navigate(action)
         }
 
+        /**
+         * Navigates to the new screen for secondary currency selection
+         * */
         secondaryCurrency.setOnClickListener {
             val action = ExchangeFragmentDirections.toSelectCurrencyFragment(
                 currencyList = state?.currencyList?.toTypedArray() ?: emptyArray(),

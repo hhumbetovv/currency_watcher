@@ -11,6 +11,9 @@ import com.theternal.exchange.adapters.CurrencyListAdapter
 import com.theternal.exchange.databinding.FragmentSelectCurrencyBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * A custom type holds string (currency) and boolean (specifies which field it is)
+ * */
 typealias CurrencyResult = Pair<Boolean, String>
 
 @AndroidEntryPoint
@@ -21,7 +24,12 @@ class SelectCurrencyFragment : Fragment() {
     }
 
     private var binding: FragmentSelectCurrencyBinding? = null
+
+    /**
+     * Initializing args to get the list and boolean value sent from the previous screen
+     * */
     private val args : SelectCurrencyFragmentArgs by navArgs()
+
     private val navController by lazy { findNavController() }
 
     private lateinit var currencyListAdapter: CurrencyListAdapter
@@ -40,6 +48,10 @@ class SelectCurrencyFragment : Fragment() {
 
         currencyListAdapter = CurrencyListAdapter(
             callback = { currency ->
+
+                /**
+                 * Updating the navigation state of the previous screen with [CurrencyResult]
+                 * */
                 navController.previousBackStackEntry?.savedStateHandle?.set(
                     CURRENCY_KEY, CurrencyResult(args.isPrimary, currency)
                 )
