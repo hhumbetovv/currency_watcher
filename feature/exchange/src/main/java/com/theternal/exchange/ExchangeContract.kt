@@ -12,9 +12,9 @@ sealed interface ExchangeContract {
 
         data class SetSecondaryAmount(val amount: BigDecimal) : Event
 
-        data class SelectPrimaryCurrency(val position: Int) : Event
+        data class SelectPrimaryCurrency(val value: String) : Event
 
-        data class SelectSecondaryCurrency(val position: Int) : Event
+        data class SelectSecondaryCurrency(val value: String) : Event
 
     }
 

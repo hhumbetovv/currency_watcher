@@ -7,6 +7,7 @@
     <string name="removeWatcher">Remove\nWatcher</string>
     <string name="swap">Swap</string>
     <string name="save">Save</string>
+    <string name="selectCurrency">Select Currency</string>
     <string name="emptyWatcherList">there are no watchers registered yet</string>
     <string name="emptyRecordList">no changes have been recorded yet</string>
     <string name="currentAmount">Current Amount</string>

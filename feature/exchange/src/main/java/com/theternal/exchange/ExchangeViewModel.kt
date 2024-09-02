@@ -52,9 +52,9 @@ class ExchangeViewModel @Inject constructor(
 
             is Event.SetSecondaryAmount -> setSecondaryAmount(event.amount)
 
-            is Event.SelectPrimaryCurrency -> selectPrimaryCurrency(event.position)
+            is Event.SelectPrimaryCurrency -> selectPrimaryCurrency(event.value)
 
-            is Event.SelectSecondaryCurrency -> selectSecondaryCurrency(event.position)
+            is Event.SelectSecondaryCurrency -> selectSecondaryCurrency(event.value)
         }
     }
 
@@ -98,23 +98,21 @@ class ExchangeViewModel @Inject constructor(
         )
     }
 
-    private fun selectPrimaryCurrency(position: Int) {
+    private fun selectPrimaryCurrency(value: String) {
         if(state.currencyList == null) return
 
-        val currency = state.currencyList!![position]
-        if(currency == state.primaryCurrency) return
+        if(value == state.primaryCurrency) return
 
-        setState(state.copy(primaryCurrency = currency))
+        setState(state.copy(primaryCurrency = value))
         exchange(true)
     }
 
-    private fun selectSecondaryCurrency(position: Int) {
+    private fun selectSecondaryCurrency(value: String) {
         if(state.currencyList == null) return
 
-        val currency = state.currencyList!![position]
-        if(currency == state.secondaryCurrency) return
+        if(value == state.secondaryCurrency) return
 
-        setState(state.copy(secondaryCurrency = currency))
+        setState(state.copy(secondaryCurrency = value))
         exchange(false)
     }
 }

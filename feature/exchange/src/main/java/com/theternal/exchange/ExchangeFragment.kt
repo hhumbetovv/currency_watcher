@@ -2,15 +2,11 @@ package com.theternal.exchange
 
 import android.animation.LayoutTransition
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.theternal.add_watcher.AddWatcherContract
 import com.theternal.add_watcher.AddWatcherFragment
 import com.theternal.common.extensions.format
-import com.theternal.common.extensions.onItemSelectedListener
 import com.theternal.common.extensions.round
 import com.theternal.common.extensions.setOnChangeListener
 import com.theternal.common.extensions.toBigDecimalOrZero
@@ -38,8 +34,21 @@ class ExchangeFragment : BaseFragment<FragmentExchangeBinding, ExchangeViewModel
 
     private val addWatcherFragment = AddWatcherFragment()
     private val bottomSheet = BottomSheetFragment { addWatcherFragment }
+    private val navController by lazy { findNavController() }
 
     override val initViews: Initializer<FragmentExchangeBinding> = {
+
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<CurrencyResult>(
+            SelectCurrencyFragment.CURRENCY_KEY
+        )?.observe(viewLifecycleOwner) { result ->
+            val isPrimary = result.first
+            val currency = result.second
+            postEvent(
+                if(isPrimary) Event.SelectPrimaryCurrency(currency)
+                else Event.SelectSecondaryCurrency(currency)
+            )
+        }
+
         container.apply {
             layoutTransition = LayoutTransition().apply {
                 enableTransitionType(LayoutTransition.CHANGING)
@@ -54,12 +63,20 @@ class ExchangeFragment : BaseFragment<FragmentExchangeBinding, ExchangeViewModel
             postEvent(Event.SetSecondaryAmount(value.toBigDecimalOrZero()))
         }
 
-        primaryCurrency.onItemSelectedListener { position ->
-            postEvent(Event.SelectPrimaryCurrency(position))
+        primaryCurrency.setOnClickListener {
+            val action = ExchangeFragmentDirections.toSelectCurrencyFragment(
+                currencyList = state?.currencyList?.toTypedArray() ?: emptyArray(),
+                isPrimary = true
+            )
+            navController.navigate(action)
         }
 
-        secondaryCurrency.onItemSelectedListener { position ->
-            postEvent(Event.SelectSecondaryCurrency(position))
+        secondaryCurrency.setOnClickListener {
+            val action = ExchangeFragmentDirections.toSelectCurrencyFragment(
+                currencyList = state?.currencyList?.toTypedArray() ?: emptyArray(),
+                isPrimary = false
+            )
+            navController.navigate(action)
         }
 
         addWatcherBtn.setOnClickListener {
@@ -86,7 +103,6 @@ class ExchangeFragment : BaseFragment<FragmentExchangeBinding, ExchangeViewModel
 
         if(newState.currencyList != null) {
             updateCurrencyList(
-                newState.currencyList,
                 newState.primaryCurrency,
                 newState.secondaryCurrency
             )
@@ -120,30 +136,12 @@ class ExchangeFragment : BaseFragment<FragmentExchangeBinding, ExchangeViewModel
     }
 
     private fun updateCurrencyList(
-        list: List<String>,
         primary: String,
         secondary: String,
     ) {
         binding {
-            if(primaryCurrency.adapter == null) {
-                val adapter = ArrayAdapter(
-                    requireContext(),
-                    android.R.layout.simple_spinner_item,
-                    list
-                )
-                adapter.setDropDownViewResource(
-                    android.R.layout.simple_spinner_dropdown_item
-                )
-
-                with(primaryCurrency) {
-                    setAdapter(adapter)
-                    setSelection(list.indexOf(primary))
-                }
-                with(secondaryCurrency) {
-                    setAdapter(adapter)
-                    setSelection(list.indexOf(secondary))
-                }
-            }
+            primaryCurrency.text = primary
+            secondaryCurrency.text = secondary
         }
     }
 
