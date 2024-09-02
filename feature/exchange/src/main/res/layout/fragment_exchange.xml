@@ -37,9 +37,10 @@
             app:layout_constraintTop_toBottomOf="@+id/primaryField"
             tools:text="1 USD = 1 USD" />
 
-        <Spinner
+        <TextView
             android:id="@+id/primaryCurrency"
             style="@style/spinner"
+            tools:text="USD"
             app:layout_constraintBottom_toBottomOf="@+id/primaryField"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/primaryField" />
@@ -65,9 +66,10 @@
             app:layout_constraintTop_toBottomOf="@+id/secondaryField"
             tools:text="1 USD = 1 USD" />
 
-        <Spinner
+        <TextView
             android:id="@+id/secondaryCurrency"
             style="@style/spinner"
+            tools:text="USD"
             app:layout_constraintBottom_toBottomOf="@+id/secondaryField"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/secondaryField" />

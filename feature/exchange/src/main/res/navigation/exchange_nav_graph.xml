@@ -7,5 +7,20 @@
     <fragment
         android:id="@+id/exchangeFragment"
         android:name="com.theternal.exchange.ExchangeFragment"
-        android:label="ExchangeFragment" />
+        android:label="ExchangeFragment" >
+        <action
+            android:id="@+id/to_selectCurrencyFragment"
+            app:destination="@id/selectCurrencyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectCurrencyFragment"
+        android:name="com.theternal.exchange.SelectCurrencyFragment"
+        android:label="SelectCurrencyFragment" >
+        <argument
+            android:name="currencyList"
+            app:argType="string[]" />
+        <argument
+            android:name="isPrimary"
+            app:argType="boolean" />
+    </fragment>
 </navigation>
